@@ -56,7 +56,7 @@ CREATE OR REPLACE TYPE T_Articulo AS OBJECT
     precio FLOAT ,
     fechaActuPrecio DATE ,
     fechaRegistro   DATE ,
-    ref_T_Usuario REF T_Usuario ,
+    ref_T_Usuario REF T_Usuarios ,
     ref_familia REF T_Familia ,
     ref_T_UnidadMedida REF T_UnidadMedida ,
     list_ref_T_Componente T_Componente_Lista ,
@@ -227,7 +227,7 @@ END ;
 /
 
 
--- DEFINICIÓN DE TABLAS OBJETO---------------------------------------
+-- DEFINICIÓN DE TABLAS OBJETO--------------------------------------------------
 
 	--Tabla: Familias
 CREATE TABLE Familias_OBJ OF T_Familia
