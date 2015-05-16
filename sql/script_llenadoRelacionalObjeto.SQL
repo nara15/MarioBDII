@@ -123,3 +123,10 @@ FROM DUAL;
 INSERT INTO TiposDeCambio_OBJ 
 SELECT NULL, 525.36, ADD_MONTHS(sysdate - 14,-1), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
 FROM DUAL;
+
+
+
+
+
+
+
