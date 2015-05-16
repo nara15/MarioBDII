@@ -37,7 +37,9 @@ Insert into Info_Obj Values ( '6','intel@intel.com','23','26/02/2015');
 Insert into Info_Obj Values ( '7','amd@amd.com','23','26/02/2015');
 
 
+--Factura Compra 
 
+select * from FacturaCOmpra_obj
 
 
 
