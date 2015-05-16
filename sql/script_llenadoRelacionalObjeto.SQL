@@ -1,3 +1,5 @@
+--SCRIPT DE LLENADO
+
 --Ingreso de familias **********************************************************
 INSERT INTO Familias_OBJ VALUES('Default', 'Instancia default', 0.01);
 INSERT INTO Familias_OBJ VALUES('CPU', 'Unidades de procesamiento central', 0.2);
@@ -72,61 +74,69 @@ INSERT INTO Monedas_OBJ VALUES (2, 'Dolar');
 COMMIT;
 
 --Inserción de unidades de medida
-INSERT INTO UnidadesDeMedida VALUES(1, 'Unidad');
-INSERT INTO UnidadesDeMedida VALUES(2, 'Peso');
+INSERT INTO UnidadesDeMedida VALUES('U', 'Unidad');
+INSERT INTO UnidadesDeMedida VALUES('PE', 'Peso');
 
 --Inserción de tipos de cambio de meses anteriores
 INSERT INTO TiposDeCambio_OBJ 
-SELECT NULL, 525.44, ADD_MONTHS(sysdate - 14,-12), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
+SELECT NULL, 525.44, ADD_MONTHS(sysdate - 14,-12), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
 
 INSERT INTO TiposDeCambio_OBJ 
-SELECT NULL, 525.36, ADD_MONTHS(sysdate - 15,-11), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
+SELECT NULL, 525.36, ADD_MONTHS(sysdate - 15,-11), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
 
 INSERT INTO TiposDeCambio_OBJ 
-SELECT NULL, 525.36, ADD_MONTHS(sysdate - 14,-10), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
+SELECT NULL, 525.36, ADD_MONTHS(sysdate - 15,-10), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
 
 INSERT INTO TiposDeCambio_OBJ 
-SELECT NULL, 525.57, ADD_MONTHS(sysdate - 14,-9), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
+SELECT NULL, 525.57, ADD_MONTHS(sysdate - 15,-9), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
 
 INSERT INTO TiposDeCambio_OBJ 
-SELECT NULL, 525.82, ADD_MONTHS(sysdate - 14,-8), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
-FROM DUAL;
---****************************************
-INSERT INTO TiposDeCambio_OBJ 
-SELECT NULL, 525.94, ADD_MONTHS(sysdate - 14,-7), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
+SELECT NULL, 525.82, ADD_MONTHS(sysdate - 15,-8), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
 
 INSERT INTO TiposDeCambio_OBJ 
-SELECT NULL, 526.27, ADD_MONTHS(sysdate - 14,-6), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
+SELECT NULL, 525.94, ADD_MONTHS(sysdate - 15,-7), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
 
 INSERT INTO TiposDeCambio_OBJ 
-SELECT NULL, 526.27, ADD_MONTHS(sysdate - 14,-5), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
+SELECT NULL, 526.27, ADD_MONTHS(sysdate - 15,-6), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
 
 INSERT INTO TiposDeCambio_OBJ 
-SELECT NULL, 526.31, ADD_MONTHS(sysdate - 14,-4), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
+SELECT NULL, 526.27, ADD_MONTHS(sysdate - 15,-5), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
 
 INSERT INTO TiposDeCambio_OBJ 
-SELECT NULL, 525.36, ADD_MONTHS(sysdate - 14,-3), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
+SELECT NULL, 526.31, ADD_MONTHS(sysdate - 15,-4), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
 
 INSERT INTO TiposDeCambio_OBJ 
-SELECT NULL, 525.36, ADD_MONTHS(sysdate - 14,-2), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
+SELECT NULL, 526.65, ADD_MONTHS(sysdate - 15,-3), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
 
 INSERT INTO TiposDeCambio_OBJ 
-SELECT NULL, 525.36, ADD_MONTHS(sysdate - 14,-1), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1)
+SELECT NULL, 526.77, ADD_MONTHS(sysdate - 15,-2), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
 
+INSERT INTO TiposDeCambio_OBJ 
+SELECT NULL, 526.80, ADD_MONTHS(sysdate - 15,-1), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
+FROM DUAL;
+
+INSERT INTO TiposDeCambio_OBJ 
+SELECT NULL, 526.80, sysdate - 15, 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
+FROM DUAL;
+<<<<<<< HEAD
+COMMIT;
+=======
 
 
 
 
 
 
+
+>>>>>>> origin/master
