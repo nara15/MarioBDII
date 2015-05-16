@@ -161,6 +161,17 @@ CREATE OR REPLACE TYPE T_Componente AS OBJECT
     RETURN SELF AS RESULT 
   ) FINAL ;
   /
+  
+  --Tipo de dato: Proyecciones
+  CREATE OR REPLACE TYPE T_Proyeccion AS OBJECT
+  (
+    Proyeccion_ID    NUMBER (6) ,
+    fecha            DATE ,
+    fechaProyecccion DATE ,
+    codArt           VARCHAR2 (20 CHAR) ,
+    montoProyeccion FLOAT ,
+    ref_T_Moneda REF T_Moneda ) FINAL ;
+  /
 
 -- CREACIÓN DEL CUERPO DE ALGUNOS TIPOS DEFINICIDOS/////////////////////////////
 
@@ -358,3 +369,15 @@ ALTER TABLE TiposDeCambio_OBJ ADD CONSTRAINT TiposDeCambio_Monedas_FKv1 FOREIGN 
     porcOtros NOT NULL ,
     CONSTRAINT ListaPrecios_PK PRIMARY KEY ( ID_lp )
   ) NESTED TABLE T_LineaLPArticulo_tab STORE AS LDetallesLPNTAB;
+  
+  --Tabla: Proyecciones
+  CREATE TABLE Proyecciones_OBJ OF T_Proyeccion
+  (
+    Proyeccion_ID NOT NULL ,
+    fecha NOT NULL ,
+    fechaProyecccion NOT NULL ,
+    codArt NOT NULL ,
+    montoProyeccion NOT NULL ,
+    ref_T_Moneda NOT NULL ,
+    CONSTRAINT Proyecciones_OBJ_PK PRIMARY KEY ( Proyeccion_ID )
+  ) ;
