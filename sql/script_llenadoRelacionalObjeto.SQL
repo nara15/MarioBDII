@@ -1,6 +1,6 @@
 --SCRIPT DE LLENADO
 
---Ingreso de familias **********************************************************
+--Ingreso de familias ************************************************************************************************************
 INSERT INTO Familias_OBJ VALUES('Default', 'Instancia default', 0.01);
 INSERT INTO Familias_OBJ VALUES('CPU', 'Unidades de procesamiento central', 0.2);
 INSERT INTO Familias_OBJ VALUES('MEM', 'Memorias', 0.2);
@@ -8,7 +8,7 @@ INSERT INTO Familias_OBJ VALUES('CIRC', 'PLacas de circuitos', 0.1);
 INSERT INTO Familias_OBJ VALUES('TARJ', 'Tarjetas', 0);
 COMMIT;
 
---Inserción de artículos *******************************************************
+--Inserción de artículos *********************************************************************************************************
 INSERT INTO Articulos_OBJ
 SELECT 'TM', 'Tarjeta Madre Asrock', 'Intel', NULL,
         1, 10, 26300, null, SYSDATE,
@@ -55,7 +55,7 @@ SELECT 'SL02.8G08ME500SSD', 'CPU grant', 'Dell', '260s',
 FROM DUAL;
 COMMIT;
 
---Inserción (registro) de componentes*******************************************
+--Inserción (registro) de componentes*********************************************************************************************
 INSERT INTO Componente_OBJ --Se inserta el componente: tarjeta gráfica
 SELECT 1, (SELECT REF(ar) FROM Articulos_OBJ ar WHERE ar.codigo = 'TM')
 FROM DUAL;
@@ -73,7 +73,7 @@ SELECT 4, (SELECT REF(ar) FROM Articulos_OBJ ar WHERE ar.codigo = 'MEMRAM.2GB')
 FROM DUAL;
 COMMIT;
 
---Relacionar los articulos con sus componentes**********************************
+--Relacionar los articulos con sus componentes************************************************************************************
 
 /*
 INSERT INTO TABLE (SELECT ar.list_ref_t_componente 
@@ -81,16 +81,16 @@ INSERT INTO TABLE (SELECT ar.list_ref_t_componente
                     WHERE ar.codigo = 'SL02.8G08ME500SSD')
 SELECT REF(co) FROM Componente_obj co;*/
                    
---Inserción de monedas
+--Inserción de monedas***********************************************************************************************************
 INSERT INTO Monedas_OBJ VALUES (1, 'Colón');
 INSERT INTO Monedas_OBJ VALUES (2, 'Dolar');
 COMMIT;
 
---Inserción de unidades de medida
+--Inserción de unidades de medida*************************************************************************************************
 INSERT INTO UnidadesDeMedida VALUES('U', 'Unidad');
 INSERT INTO UnidadesDeMedida VALUES('PE', 'Peso');
 
---Inserción de tipos de cambio de meses anteriores
+--Inserción de tipos de cambio de meses anteriores********************************************************************************
 INSERT INTO TiposDeCambio_OBJ 
 SELECT NULL, 525.44, ADD_MONTHS(sysdate - 14,-12), 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
@@ -142,3 +142,15 @@ FROM DUAL;
 INSERT INTO TiposDeCambio_OBJ 
 SELECT NULL, 526.80, sysdate - 15, 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
+
+--Inserción de una listas de precio
+INSERT INTO LISTAPRECIOS_OBJ 
+VALUES (1, 'Público', 'Precios para particulares', 0.1, 0.1, 0, 
+        T_LineaLPArticulo_NTab(T_LineaLPArticulo(1, 26300, (select ref(art) from articulos_obj art where codigo = 'TM')),
+                              T_LineaLPArticulo(2, 10000, (select ref(art) from articulos_obj art where codigo = 'TGR5230-SL-1GD3-L')),
+                              T_LineaLPArticulo(3, 9000, (select ref(art) from articulos_obj art where codigo = 'TS1')),
+                              T_LineaLPArticulo(4, 12300, (select ref(art) from articulos_obj art where codigo = 'MEMRAM.2GB')),
+                              T_LineaLPArticulo(5, 700000, (select ref(art) from articulos_obj art where codigo = 'SL02.8G08ME500SSD'))
+                              )
+        
+        );
