@@ -1,4 +1,4 @@
-create or replace TRIGGER TRIG_ONINSERT_FACTCOMPRA
+CREATE OR REPLACE TRIGGER TRIG_ONINSERT_FACTCOMPRA
 BEFORE INSERT ON FacturaCompra_Obj FOR EACH ROW
 
 DECLARE art_id     VARCHAR(25);
@@ -31,27 +31,25 @@ BEGIN
    --Asigno codigo random
     SELECT dbms_random.string('U', 10) str  INTO  art_new_id FROM   dual;
     
-     
-  INSERT INTO Articulos_OBJ
-        Values (
-        art_new_id, 
-        :new.nombre,
-        :new.marca, 
-        :new.modelo,
-        :new.cantMin,
-        :new.cantMax,
-        :new.precio,
-        :new.fecharegistro,
-        :new.fecharegistro,
-        
-        (SELECT REF(f) FROM Familias_OBJ f WHERE f.codigo = 'Default'),
-      
-        (SELECT REF(f) FROM Usuarios_OBJ f WHERE f.codigo = 'user') ,
-        
-        (SELECT REF(f) FROM UnidadMedidad_OBJ f WHERE f.codigo = 'PE'),
-        
-        T_Componente_lista()
-        
-        );
+    --Extraigo el código de la referencia del usuario
+    SELECT DEREF(:new.usuario).codigo INTO codigoUsuario
+    FROM DUAL;
+    
+  INSERT INTO Articulos_OBJ VALUES (
+              art_new_id, 
+              :new.nombre,
+              :new.marca, 
+              :new.modelo,
+              :new.cantMin,
+              :new.cantMax,
+              :new.precio,
+              :new.fecharegistro,
+              :new.fecharegistro,
+              (SELECT REF(f) FROM Usuarios_OBJ f WHERE f.codigo = codigoUsuario) ,
+              (SELECT REF(f) FROM Familias_OBJ f WHERE f.codigo = 'Default'),
+              (SELECT REF(f) FROM UnidadMedidad_OBJ f WHERE f.codigo = 'PE'),
+              T_Componente_lista()
+              
+            );
   
   END;
