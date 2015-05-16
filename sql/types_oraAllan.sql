@@ -1,7 +1,7 @@
 --Script Creacion
 -- Factura Compra, Unidades Medida
 -- CLientes , Usuarios , Proveedores
-
+--Hola Mario estoy cambiando el archivo
 
 
 -- UNIDAD MEDIDA
