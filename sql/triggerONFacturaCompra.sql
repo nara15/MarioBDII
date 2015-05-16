@@ -2,7 +2,9 @@ create or replace TRIGGER TRIG_ONINSERT_FACTCOMPRA
 BEFORE INSERT ON FacturaCompra_Obj FOR EACH ROW
 
 DECLARE art_id     VARCHAR(25);
-DECLARE art_new_id VARCHAR(25);
+        art_new_id VARCHAR(25);
+        
+        codigoUsuario VARCHAR(20);
 
 BEGIN
 
@@ -11,7 +13,7 @@ BEGIN
       
     IF art_id IS NOT NULL THEN
     
-    UPDATE Articulos_obj SET Precio = :new.Precio WHERE codigoArticulo = :new.codigoArticulo;
+    UPDATE Articulos_obj SET Precio = :new.Precio WHERE codigo = :new.codigo;
     
     END IF;
  
@@ -19,38 +21,37 @@ BEGIN
 
     --Auto Incremente con Sequence
     SELECT fact_seq.NEXTVAL
-    INTO   :new.numeroFactura
+    INTO   :new.codigo
     FROM   dual;
   
     --Asigno fecha actual para la compraFactura
     SELECT TO_CHAR (SYSDATE, 'MM-DD-YYYY HH24:MI:SS') "NOW" 
-    INTO   :new.fechaCompra
+    INTO   :new.fechaRegistro
     FROM   dual;
    --Asigno codigo random
     SELECT dbms_random.string('U', 10) str  INTO  art_new_id FROM   dual;
-  
- 
+    
+     
   INSERT INTO Articulos_OBJ
         Values (
         art_new_id, 
         :new.nombre,
         :new.marca, 
         :new.modelo,
-        :new.cantMinima,
-        :new.cantMaxima,
+        :new.cantMin,
+        :new.cantMax,
         :new.precio,
-        :new.fechaCompra,
-        :new.fechaCompra,
+        :new.fecharegistro,
+        :new.fecharegistro,
         
         (SELECT REF(f) FROM Familias_OBJ f WHERE f.codigo = 'Default'),
-        T_Componente_lista(),
+      
+        (SELECT REF(f) FROM Usuarios_OBJ f WHERE f.codigo = 'user') ,
         
-        (SELECT REF(f) FROM Usuarios_OBJ f WHERE f.codigo = :new.usuario),
-        T_Componente_lista(),
+        (SELECT REF(f) FROM UnidadMedidad_OBJ f WHERE f.codigo = 'PE'),
         
-        (SELECT REF(f) FROM UnidadMedida_OBJ f WHERE f.codigo = :new.unidad),
-        T_Componente_lista(),
+        T_Componente_lista()
         
-        )
+        );
   
-  END;   
+  END;
