@@ -129,4 +129,14 @@ FROM DUAL;
 INSERT INTO TiposDeCambio_OBJ 
 SELECT NULL, 526.80, sysdate - 15, 0, (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 1), (SELECT REF(m) FROM Monedas_OBJ m WHERE m.ID_moneda = 2)
 FROM DUAL;
+<<<<<<< HEAD
 COMMIT;
+=======
+
+
+
+
+
+
+
+>>>>>>> origin/master
