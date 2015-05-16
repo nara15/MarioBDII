@@ -13,7 +13,7 @@ CREATE OR REPLACE TYPE T_Cotizaciones AS OBJECT
          estado              VARCHAR2(25) ,
          codigoCliente       ref T_Clientes,
          codigoUsuario       ref T_Usuarios,
-       
+         lista_art_cotizados  T_ArtCotizado_Lista,
    
     CONSTRUCTOR FUNCTION T_Cotizaciones(
     
@@ -45,28 +45,31 @@ CREATE TABLE Cotizaciones_OBJ OF T_Cotizaciones
          listaPrecios        NOT NULL ,
          moneda              NOT NULL ,
          estado              NOT NULL ,
-         codigoCliente       NOT NULL ,
-         codigoUsuario       NOT NULL ,
-         CONSTRAINT Info_PK PRIMARY KEY ( codigo )
+        
+       CONSTRAINT Cotizaciones_PK PRIMARY KEY ( codigo ),
+       CONSTRAINT Cotizacion_Cliente_FK FOREIGN KEY (codigoCliente) REFERENCES Clientes_OBJ,
+       CONSTRAINT Cotizacion_Usuario_FK FOREIGN KEY (codigoUsuario) REFERENCES Usuarios_OBJ
    
-  ) ;
+  ) NESTED TABLE lista_art_cotizados STORE AS LArtCotizadosNTAB;
+  
+  
   
 --___________________________________________________________________________________________
   
-  
-CREATE OR REPLACE TYPE T_Info AS OBJECT
+ -- Crea Type Articulos Cotizados 
+CREATE OR REPLACE TYPE T_ArticulosCotizados AS OBJECT
   (
-    codigo     VARCHAR2 (20 CHAR) ,
-    correo     VARCHAR2 (50 CHAR) ,
-    edad      NUMBER (5) ,
-    fechaIngreso    DATE ,
+    codigo              VARCHAR2 (20 CHAR) ,
+    codigoArticulo      VARCHAR2 (50 CHAR) ,
+    cantidad            NUMBER (5) ,
+    precioCotizado      FLOAT ,
    
-    CONSTRUCTOR FUNCTION T_Info(
+    CONSTRUCTOR FUNCTION T_ArticulosCotizados(
     
-        pCodigo     IN VARCHAR2 ,
-        pCorreo    IN VARCHAR2 ,
-        pEdad     IN VARCHAR2 ,
-        pFechaIngreso    IN DATE
+        pCodigo             IN VARCHAR2 ,
+        codigoArticulo      IN VARCHAR2 ,
+        cantidad            IN NUMBER ,
+        precioCotizado      IN FLOAT
 
         )
       RETURN SELF
@@ -74,12 +77,10 @@ CREATE OR REPLACE TYPE T_Info AS OBJECT
       RESULT ) FINAL ;
 --/////////////////////////////////////////////////////////////////////////////
 --Drop table Info_Obj
-CREATE TABLE Info_OBJ OF T_Info
-  (
-    codigo  NOT NULL ,
-    correo  NOT NULL ,
-    edad    NOT NULL ,
-    fechaIngreso  NOT NULL, 
-    CONSTRAINT Info_PK PRIMARY KEY ( codigo )
-   
-  ) ;
+
+CREATE OR REPLACE TYPE T_ArtCotizado_Lista
+IS
+  TABLE OF REF T_ArticulosCotizados ;
+
+
+ 
