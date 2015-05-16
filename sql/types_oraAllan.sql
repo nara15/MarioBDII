@@ -6,6 +6,8 @@
 
 -- UNIDAD MEDIDA
 
+
+--Estoy trabajando en mi proyecto
 CREATE OR REPLACE TYPE T_UnidadMedida AS OBJECT
   (
     codigo     VARCHAR2 (20 CHAR) ,
