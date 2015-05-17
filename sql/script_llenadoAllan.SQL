@@ -37,36 +37,13 @@ INSERT INTO Proveedores_Obj VALUES('INTEL',  'Intel', 'ufotv'     , (SELECT REF(
 INSERT INTO Proveedores_Obj VALUES('AMD',    'AmD',   'lateralis' , (SELECT REF(f) FROM Info_OBJ f WHERE f.codigo = '7'));
 
 
---Factura Compra 
-
-select deref(proveedor).codigo from FacturaCOmpra_obj where codigo = 3;
---Plantilla de Insercion en Factura Compra
-INSERT INTO facturaCompra_obj values ('Codigo','Nombre','Marca','Modelo',CantMin,CantMax,Precio,'Fecha',
-
- (SELECT REF(f) FROM Proveedores_OBJ f WHERE f.codigo = 'Proveedor')
-,(SELECT REF(f) FROM Usuarios_OBJ f WHERE f.codigo = 'Usuarios')
-,(SELECT REF(f) FROM Unidad_OBJ f WHERE f.codigo = 'Unidad'));
-
-
-INSERT INTO facturaCompra_obj values ('','OtroMas','Marca','Modelo',1,100,4500,'',
-
- (SELECT REF(f) FROM Proveedores_OBJ f WHERE f.codigo = 'INTEL')
-,(SELECT REF(f) FROM Usuarios_OBJ f WHERE f.codigo = 'ARD')
-,(SELECT REF(f) FROM UnidadMedidad_OBJ f WHERE f.codigo = 'PE'));
-
-select * from FACTURAcOMPRA_OBJ;
-select * from articulos_obj;
 
 insert into familias_obj values ('Default','FAMILIA xDEFECTO',10);
 
 
 --//////////////////////////////////////////////////////////////////////////////////////
 
-select * from componente_obj;
 
-insert into componente_obj values (1,(SELECT REF(f) FROM Articulos_OBJ f WHERE f.codigo = 'EOXMTJOSYB'));
-insert into componente_obj values (2,(SELECT REF(f) FROM Articulos_OBJ f WHERE f.codigo = 'QYUDNADHTW'));
-insert into componente_obj values (3,(SELECT REF(f) FROM Articulos_OBJ f WHERE f.codigo = 'QPKUSFSMOG'));
 
 execute insert_art_comp_list ('QYUDNADHTW','2');
 execute insert_art_comp_list ('QYUDNADHTW','3');
