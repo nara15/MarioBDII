@@ -18,18 +18,21 @@ COMMIT;
 
 -- Raise ERROR - Not When Found Cotizacion -- insert into articulosCotizados_obj values ('ABJ','HPLPMCHSUX',1,12000);
 
--- Testing Articulos Cotizados Prueba
+-- Testing Articulos Cotizados Prueba ( Nombre Articulo , ID Cotizacion , Cantidad Articulos)
 execute Insert_Art_Cotizado_List('HPLPMCHSUX','COT2',1);
 execute Insert_Art_Cotizado_List('QPKUSFSMOG','COT3',2);
 execute Insert_Art_Cotizado_List('QPKUSFSMOG','COT4',2);
 
+--___________________________________________________________________________________________
 execute Insert_Art_Cotizado_List('QYUDNADHTW','COT5',2);
-execute Insert_Art_Cotizado_List('HPLPMCHSUX','COT5',1);
+execute Insert_Art_Cotizado_List('EOXMTJOSYB','COT5',1);
+
+execute Insert_Art_Cotizado_List('HPLPMCHSUX','COT6',1);
 
 -- SELECT LIST_REF_T_COMPONENTE FROM ANY ARTICULO
-select lista_art_cotizados from cotizaciones_obj  where codigo = 'COT5';
+select lista_art_cotizados from cotizaciones_obj  where codigo = 'COT4';
 
-
+-- // Mejor hacer el result set :D
 -- LIST THE NAMES OF ARTICULOS (INCLUIR EN STORE PROCEDURE )
 select deref(column_value).codigoarticulo as cod, 
        deref(column_value).cantidad as cant ,
@@ -37,6 +40,6 @@ select deref(column_value).codigoarticulo as cod,
 from (
   TABLE(select lista_art_cotizados from cotizaciones_obj where codigo = 'COT5') cotizaciones);
 
+--/////////////////////////////////////////////////////////////////////////////////
 
-                     
-                          
+                                            
