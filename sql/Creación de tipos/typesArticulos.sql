@@ -101,7 +101,7 @@ CREATE TABLE Articulos_OBJ OF T_Articulo
     CONSTRAINT Articulos_PK PRIMARY KEY ( codigo )
   ) NESTED TABLE list_ref_T_Componente STORE AS Componentes_NTAB;
 
-CREATE TABLE Componente_OBJ OF T_Componente
+CREATE TABLE Componentes_OBJ OF T_Componente
   (
     Componente_ID NOT NULL ,
     ref_T_Articulo NOT NULL ,
