@@ -1,5 +1,5 @@
 --/////////////////////////////////////////////////////////////////////////////
--- Crea Tipo T_Cotizaciones
+-- Creación del Tipo T_Cotizaciones
 CREATE OR REPLACE TYPE T_Cotizaciones AS OBJECT
   (
          codigo              VARCHAR2(25) ,
