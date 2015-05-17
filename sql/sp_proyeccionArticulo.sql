@@ -6,7 +6,8 @@ IS
   
   codigoAr varchar2(20);
   precio NUMBER;
-
+  
+  --Obtenemos todos los artículos de la lista de precios
   CURSOR Articulos_LP (c_pCodLP NUMBER) IS
     SELECT precio, DEREF(REF_T_ARTICULO).codigo FROM 
     TABLE(
