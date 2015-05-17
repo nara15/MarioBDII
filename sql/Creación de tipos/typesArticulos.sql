@@ -58,5 +58,52 @@ AS
 		END;
 END ;
 /
+
 --//////////////////////////////////////////////////////////////////////////////
---Creación de la tabla de usuarios
+--Creación del tipo de datos T_Componente
+CREATE OR REPLACE TYPE T_Componente AS OBJECT
+  (
+    Componente_ID NUMBER (3) ,
+    ref_T_Articulo REF T_Articulo ,
+    CONSTRUCTOR FUNCTION T_Componente(
+      pCodArt IN VARCHAR2 ) RETURN SELF AS RESULT 
+  ) FINAL ;
+  /
+CREATE OR REPLACE TYPE BODY T_Componente AS
+  CONSTRUCTOR FUNCTION T_Componente(
+    pCodArt IN VARCHAR2 )
+  RETURN SELF AS RESULT
+  AS
+    BEGIN
+      Componente_ID := pCodArt;
+      RETURN;
+    END;
+END ;
+/
+--//////////////////////////////////////////////////////////////////////////////
+--Tipo de dato: Tabla de referencias a componentes
+CREATE OR REPLACE TYPE T_Componente_Lista
+IS
+  TABLE OF REF T_Componente ;
+  /
+
+--//////////////////////////////////////////////////////////////////////////////
+--Creación de la tabla de articulos y componentes
+CREATE TABLE Articulos_OBJ OF T_Articulo
+  (
+    codigo NOT NULL ,
+    nombre NOT NULL ,
+    cantMinima NOT NULL ,
+    precio NOT NULL ,
+    usuarioInserta NOT NULL ,
+    ref_familia NOT NULL ,
+    ref_T_UnidadMedida NOT NULL ,
+    CONSTRAINT Articulos_PK PRIMARY KEY ( codigo )
+  ) NESTED TABLE list_ref_T_Componente STORE AS Componentes_NTAB;
+
+CREATE TABLE Componente_OBJ OF T_Componente
+  (
+    Componente_ID NOT NULL ,
+    ref_T_Articulo NOT NULL ,
+    CONSTRAINT Componente_PK PRIMARY KEY ( Componente_ID )
+  ) ;

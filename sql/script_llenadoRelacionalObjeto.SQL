@@ -1,5 +1,7 @@
 --SCRIPT DE LLENADO
-
+--Ingreso de usuarios
+INSERT INTO Usuarios_OBJ VALUES('ALL', 'Allan Rojas','allrojas', '123');
+COMMIT;
 --Ingreso de familias ************************************************************************************************************
 INSERT INTO Familias_OBJ VALUES('Default', 'Instancia default', 0.01);
 INSERT INTO Familias_OBJ VALUES('CPU', 'Unidades de procesamiento central', 0.2);
