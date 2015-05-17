@@ -68,9 +68,16 @@ insert into componente_obj values (1,(SELECT REF(f) FROM Articulos_OBJ f WHERE f
 insert into componente_obj values (2,(SELECT REF(f) FROM Articulos_OBJ f WHERE f.codigo = 'QYUDNADHTW'));
 insert into componente_obj values (3,(SELECT REF(f) FROM Articulos_OBJ f WHERE f.codigo = 'QPKUSFSMOG'));
 
+execute insert_art_comp_list ('QYUDNADHTW','2');
+execute insert_art_comp_list ('QYUDNADHTW','3');
 
+select  list_ref_t_componente   from articulos_obj where codigo = 'QYUDNADHTW';
 
-
+select deref(deref(column_value).ref_t_articulo).nombre
+from (
+  TABLE(select LIST_REF_T_COMPONENTE from articulos_obj
+  where codigo = 'QYUDNADHTW') componentes );
+--///////////////////////////////////////////////////////////////////////////////////////////
 
 
 

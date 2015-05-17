@@ -76,6 +76,18 @@ CREATE OR REPLACE TYPE T_ArticulosCotizados AS OBJECT
       RETURN SELF
     AS
       RESULT ) FINAL ;
+      
+      --////////////////////////////////////
+      
+      CREATE TABLE ArticulosCotizados_OBJ OF T_ArticulosCotizados
+  (
+      codigo              NOT NULL ,
+    codigoArticulo      NOT NULL ,
+    cantidad            NOT NULL ,
+    precioCotizado      NOT NULL ,
+    CONSTRAINT ArtCotizados_Cotizacion_FK FOREIGN KEY ( codigo ) REFERENCES Cotizaciones_OBJ
+  ) ;
+      
 --/////////////////////////////////////////////////////////////////////////////
 --Drop table Info_Obj
 
