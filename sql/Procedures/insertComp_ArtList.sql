@@ -1,3 +1,6 @@
+--insert into table(select list_ref_t_componente from articulos_obj where codigo = 'EOXMTJOSYB') values ((SELECT REF(f) FROM Componente_OBJ f WHERE f.componente_id = '1'));
+--select list_ref_t_componente from articulos_obj where codigo = 'EOXMTJOSYB';
+
 -- Procedure para insertar en la lista de componentes de un articulo
 select * from FACTURAcOMPRA_OBJ;
 select * from articulos_obj;
