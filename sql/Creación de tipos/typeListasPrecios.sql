@@ -40,14 +40,17 @@ CREATE OR REPLACE TYPE T_ListaPrecio AS OBJECT
       pPorGastoAdmi IN FLOAT ,
       pPorUti       IN FLOAT ,
       pPorOtros     IN FLOAT )
-    RETURN SELF AS RESULT AS
+    RETURN SELF AS RESULT 
+    AS
+    BEGIN
       SELF.ID_lp := pID;
       SELF.nombre := pNombre;
       SELF.descripcion := pDescripcion;
-      SELF.porcGastosAdmi := pPorGastoAdmi;
+      SELF.porcGastAdmi := pPorGastoAdmi;
       SELF.porcUtilidad := pPorUti;
       SELF.porcOtros := pPorOtros;
       RETURN;
+    END;
   END ;
   /
 
