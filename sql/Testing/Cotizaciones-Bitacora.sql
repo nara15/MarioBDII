@@ -23,8 +23,19 @@ execute Insert_Art_Cotizado_List('HPLPMCHSUX','COT2',1);
 execute Insert_Art_Cotizado_List('QPKUSFSMOG','COT3',2);
 execute Insert_Art_Cotizado_List('QPKUSFSMOG','COT4',2);
 
-
 execute Insert_Art_Cotizado_List('QYUDNADHTW','COT5',2);
+execute Insert_Art_Cotizado_List('HPLPMCHSUX','COT5',1);
+
+-- SELECT LIST_REF_T_COMPONENTE FROM ANY ARTICULO
+select lista_art_cotizados from cotizaciones_obj  where codigo = 'COT5';
+
+
+-- LIST THE NAMES OF ARTICULOS (INCLUIR EN STORE PROCEDURE )
+select deref(column_value).codigoarticulo as cod, 
+       deref(column_value).cantidad as cant ,
+       deref(column_value).preciocotizado as precioTotal
+from (
+  TABLE(select lista_art_cotizados from cotizaciones_obj where codigo = 'COT5') cotizaciones);
 
 
                      
