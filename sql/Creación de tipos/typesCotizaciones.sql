@@ -1,4 +1,5 @@
---/////////////////////////////////////////////////////////////////////////////
+
+
 -- Creación del Tipo T_Cotizaciones
 CREATE OR REPLACE TYPE T_Cotizaciones AS OBJECT
   (
