@@ -146,11 +146,12 @@ FROM DUAL;
 --Inserción de una listas de precio
 INSERT INTO LISTAPRECIOS_OBJ 
 VALUES (1, 'Público', 'Precios para particulares', 0.1, 0.1, 0, 
-        T_LineaLPArticulo_NTab(T_LineaLPArticulo(1, 26300, (select ref(art) from articulos_obj art where codigo = 'TM')),
-                              T_LineaLPArticulo(2, 10000, (select ref(art) from articulos_obj art where codigo = 'TGR5230-SL-1GD3-L')),
-                              T_LineaLPArticulo(3, 9000, (select ref(art) from articulos_obj art where codigo = 'TS1')),
-                              T_LineaLPArticulo(4, 12300, (select ref(art) from articulos_obj art where codigo = 'MEMRAM.2GB')),
-                              T_LineaLPArticulo(5, 700000, (select ref(art) from articulos_obj art where codigo = 'SL02.8G08ME500SSD'))
+        T_LineaLPArticulo_NTab(T_LineaLPArticulo(1, 40, (select ref(art) from articulos_obj art where codigo = 'TM')),
+                              T_LineaLPArticulo(2, 45, (select ref(art) from articulos_obj art where codigo = 'TGR5230-SL-1GD3-L')),
+                              T_LineaLPArticulo(3, 40, (select ref(art) from articulos_obj art where codigo = 'TS1')),
+                              T_LineaLPArticulo(4, 40, (select ref(art) from articulos_obj art where codigo = 'MEMRAM.2GB')),
+                              T_LineaLPArticulo(5, 45, (select ref(art) from articulos_obj art where codigo = 'SL02.8G08ME500SSD'))
                               )
         
         );
+commit;
