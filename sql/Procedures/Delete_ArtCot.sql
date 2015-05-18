@@ -1,11 +1,11 @@
-create or replace Procedure Delete_ArtCot
-   ( idCot IN varchar2 , codArt IN varchar2
+create or replace Procedure Delete_ArtComp
+   ( idComp IN varchar2 
    )
    
 IS
  
 BEGIN
-   delete from articuloscotizados_obj where codigo = idCot and CODIGOARTICULO = codArt;
+   delete from componente_obj where componente_id = idComp ;
    --update  articuloscotizados_obj set CANTIDAD = cant where codigo = idCot and CODIGOARTICULO = codArt;
 
 
@@ -15,8 +15,8 @@ WHEN OTHERS THEN
 END;
 
 
- select * from articuloscotizados_obj ;
+ select * from componente_obj ;
  
  select * from cotizaciones_obj
  
-execute Delete_ArtCot ('COT3','QPKUSFSMOG');
+execute Delete_ArtComp ('1');
