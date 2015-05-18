@@ -28,3 +28,12 @@ Para el sistema descrito para el proyecto I, desarrolle:
 Fecha de entrega: 18 de mayo,  2015
 
 
+-- ERROR
+ORA-01536: space quota exceeded for tablespace 'PROYECTO'
+
+When your user was created your received a space quota on the users tablespace from your dba. It means that you cannot create more than that amount of space in that tablespace. you are now creating a table. Upon doing so, a number of extents of a certain size are created (reserved) for it. Seeing as you don't explicitely mention them, you get the defaults of the tablespace. Most likely the initial/next extents and the minimum number of extents on the tablespace for a new table exceed your quota. For a solution you can do the following:
+- ask for more quota from your dba
+- specify explicite low extent sizes (make sure the tablespace is not 'uniform extent size', though)
+
+
+
