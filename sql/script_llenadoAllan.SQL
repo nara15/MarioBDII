@@ -41,23 +41,6 @@ INSERT INTO Proveedores_Obj VALUES('AMD',    'AmD',   'lateralis' , (SELECT REF(
 insert into familias_obj values ('Default','FAMILIA xDEFECTO',10);
 
 
---//////////////////////////////////////////////////////////////////////////////////////
-
-
-
-execute insert_art_comp_list ('QYUDNADHTW','2');
-execute insert_art_comp_list ('QYUDNADHTW','3');
-
-select  list_ref_t_componente   from articulos_obj where codigo = 'QYUDNADHTW';
-
-select deref(deref(column_value).ref_t_articulo).nombre
-from (
-  TABLE(select LIST_REF_T_COMPONENTE from articulos_obj
-  where codigo = 'QYUDNADHTW') componentes );
---///////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 
 

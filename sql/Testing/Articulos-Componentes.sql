@@ -25,4 +25,4 @@ from (
   TABLE(select LIST_REF_T_COMPONENTE from articulos_obj
   where codigo = 'QPKUSFSMOG') componentes );
   
- 
+
