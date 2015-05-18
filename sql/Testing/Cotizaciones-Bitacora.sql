@@ -40,11 +40,12 @@ select deref(column_value).codigoarticulo as cod,
        deref(column_value).cantidad as cant ,
        deref(column_value).preciocotizado as precioTotal
 from (
-  TABLE(select lista_art_cotizados from cotizaciones_obj where codigo = 'COT5') cotizaciones);
+  TABLE(select lista_art_cotizados from cotizaciones_obj where codigo = 'COT3') cotizaciones);
 
 --//////////////////////////Update Articulo Cotizado de Cotizadion///////////////////////////////////////////////////////
+execute Update_ArtCot ('COT3','QPKUSFSMOG',3);
 
-update  articuloscotizados_obj set CANTIDAD = 2 where codigo = 'COT3' and CODIGOARTICULO = 'QPKUSFSMOG';
+--update  articuloscotizados_obj set CANTIDAD = 2 where codigo = 'COT3' and CODIGOARTICULO = 'QPKUSFSMOG';
 --/////////////////////////Delete Cotizacion - Trigger ON DELETE -////////////////////////////////////////////
 
 delete from cotizaciones_obj where codigo = 'COT9';
