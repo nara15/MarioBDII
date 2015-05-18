@@ -5,7 +5,7 @@ create or replace Procedure Delete_ArtComp
 IS
  
 BEGIN
-   delete from componente_obj where componente_id = idComp ;
+   delete from componentes_obj where componente_id = idComp ;
    --update  articuloscotizados_obj set CANTIDAD = cant where codigo = idCot and CODIGOARTICULO = codArt;
 
 

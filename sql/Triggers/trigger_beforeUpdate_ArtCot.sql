@@ -1,21 +1,23 @@
 
 -- Before Update Articulo Cotizado
-create or replace TRIGGER before_update_artCot
-BEFORE DELETE ON articuloscotizados_obj
+create or replace 
+trigger before_update_artCot
+BEFORE UPDATE ON articuloscotizados_obj
 FOR EACH ROW
 
 DECLARE
-   v_newTotal FLOAT(5);
+   
     preciox NUmber(5);
     precioxCant Float(5);
    
 BEGIN
 
-  select precio into preciox from articulos_obj where codigo = :old.codigoArticulo;
-  select (preciox * :new.cantidad) into precioxCant from dual ;
-  
-  UPDATE :new.precioCotizado SET preciox WHERE codigo = :old.codigo and codigoarticulo = :old.codigoArticulo; 
-
+  select precio into preciox from articulos_obj where codigo = :old.codigoarticulo;
+  select (preciox * :new.cantidad) into precioxCant from dual;
+ 
+  SELECT precioxCant INTO :new.precioCotizado
+   FROM dual;
+   
 END;
 
 select * from articuloscotizados_obj;

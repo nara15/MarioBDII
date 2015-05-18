@@ -16,7 +16,7 @@ BEGIN
          cantMaxima = cantMax,
          precio = precioArt,
          fechaactuprecio = SYSDATE,
-         ref_t_usuario = (SELECT REF(f) FROM Usuarios_OBJ f WHERE f.codigo = usuarioID)
+         usuarioinserta = (SELECT REF(f) FROM Usuarios_OBJ f WHERE f.codigo = usuarioID)
          
   where codigo = codArt;
     

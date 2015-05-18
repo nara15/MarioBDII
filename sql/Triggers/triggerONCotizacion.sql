@@ -3,7 +3,7 @@
 -- Guarda Datos en Tabla Bitacora ( Registro Cambios)
 --Si EL estado es 'EMITIDA'
 
-Create or Replace  TRIGGER cot_del 
+Create or Replace  TRIGGER cot_del_obj 
 BEFORE DELETE ON Cotizaciones_obj
 FOR EACH ROW
 
