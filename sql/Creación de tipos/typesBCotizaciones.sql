@@ -1,6 +1,7 @@
 
 
 -- Creación del Tipo T_Cotizaciones
+--drop type t_bitacora_cotizaciones;
 CREATE OR REPLACE TYPE T_Bitacora_Cotizaciones AS OBJECT
   (
          codigo              VARCHAR2(25) ,
@@ -14,7 +15,7 @@ CREATE OR REPLACE TYPE T_Bitacora_Cotizaciones AS OBJECT
          estado              VARCHAR2(25) ,
          codigoCliente       ref T_Clientes,
          codigoUsuario       ref T_Usuarios,
-         lista_bit_cotizados  T_ArtCotizado_Lista,
+         lista_bit_cotizados  T_BArtCotizado_Lista,
    
     CONSTRUCTOR FUNCTION T_Bitacora_Cotizaciones(
     
@@ -35,6 +36,7 @@ CREATE OR REPLACE TYPE T_Bitacora_Cotizaciones AS OBJECT
       
 --/////////////////////////////////////////////////////////////////////////////
 -- Crea Tabla Cotizaciones_OBJ
+--drop table bcotizaciones_obj
 CREATE TABLE BCotizaciones_OBJ OF T_Bitacora_Cotizaciones
   (
          codigo              NOT NULL ,
@@ -58,6 +60,7 @@ CREATE TABLE BCotizaciones_OBJ OF T_Bitacora_Cotizaciones
 --___________________________________________________________________________________________
   
  -- Crea Type Articulos Cotizados 
+ --drop type t_bitacora_articulosCotizados
 CREATE OR REPLACE TYPE T_Bitacora_ArticulosCotizados AS OBJECT
   (
     codigo              VARCHAR2 (20 CHAR) ,
@@ -78,8 +81,8 @@ CREATE OR REPLACE TYPE T_Bitacora_ArticulosCotizados AS OBJECT
       RESULT ) FINAL ;
       
       --////////////////////////////////////
-      
-      CREATE TABLE BArticulosCotizados_OBJ OF T_ArticulosCotizados
+      --drop table BArticulosCotizados_Obj;
+      CREATE TABLE BArticulosCotizados_OBJ OF T_Bitacora_ArticulosCotizados
   (
       codigo              NOT NULL ,
     codigoArticulo      NOT NULL ,

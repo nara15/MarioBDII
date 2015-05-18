@@ -4,16 +4,16 @@
 --Si EL estado es 'EMITIDA'
 
 Create or Replace  TRIGGER cot_del 
-BEFORE DELETE ON Cotizacion
+BEFORE DELETE ON Cotizaciones_obj
 FOR EACH ROW
-DECLARE x INT;
+
   
 BEGIN
   
   IF :old.Estado = 'EMITIDA' THEN
   
   -- Inserta EN BITACORA LOS ATRIBUTOS DE LA COTIZACION A BORRAR
-  insert into Bitacora_obj values (:old.codigo,
+  insert into BCotizaciones_OBJ values (:old.codigo,
                               :old.fecha,
                               :old.condicionesPago,
                               :old.condicionesEntrega,
@@ -23,8 +23,8 @@ BEGIN
                               :old.moneda ,
                               :old.estado,
                               :old.codigoCliente,
-                              :old.codigoUsuario
-                              
+                              :old.codigoUsuario,
+                              T_BARTCOTIZADO_LISTA()
                               );
                               
   --RECORRER LA LISTA HE INSERTAR EN LA SUBLISTA DE BITACORA DE COTIZACION
@@ -46,9 +46,9 @@ BEGIN
     FETCH C_PROD INTO V_CODIGO,V_CANTIDAD,V_TOTAL ;
           EXIT WHEN C_PROD%NOTFOUND ;
           --------------------------------Inserta linea en Bitacora Articulos Cotizados--------------------------------------
-          DBMS_OUTPUT.PUT_LINE(V_CODIGO||' , ' ||V_CANTIDAD||' , ' ||V_TOTAL);
+         Insert_Art_BCotizado_List (V_CODIGO,:old.codigo,V_Cantidad);
           
-           ----------------------------------------------------------------------
+          ----------------------------------------------------------------------
           
   END LOOP ;
   CLOSE C_PROD ;/*<--- CERRAMOR EL CURSOR*/    
