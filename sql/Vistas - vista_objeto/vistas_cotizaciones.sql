@@ -31,30 +31,27 @@ CREATE OR REPLACE VIEW cotizaciones_view OF t_cotizaciones WITH OBJECT IDENTIFIE
   FROM Cotizaciones f;
   
 --------------------------------------------------------------------------------
-CREATE OR REPLACE VIEW componentes_view OF t_componente WITH OBJECT IDENTIFIER (componente_id)
+CREATE OR REPLACE VIEW cotizaciones_view OF t_cotizacion WITH OBJECT IDENTIFIER (componente_id)
 AS
-  SELECT id_componente, null
-  FROM Componentes;
+  SELECT id_cotizacion, null
+  FROM Cotizacion;
   
   
   
   
 -------------------------------------------------------------------------------- 
-CREATE OR REPLACE VIEW articulos_view OF t_articulo WITH OBJECT IDENTIFIER (codigo)
+CREATE OR REPLACE VIEW articulosCotizados_view OF t_articulosCotizados WITH OBJECT IDENTIFIER (codigo)
 AS
   SELECT ar.codigo, ar.nombre, ar.marca, ar.modelo, ar.cantminima,
           ar.cantmaxima, ar.precio, ar.fechaactuprecio, ar.fecharegistro,
-          (select ref(f) from familias_view f where f.codigo = ar.codigofamilia_fk)as ref_familia,
+          (select ref(f) from articulosCotizados_view f where f.codigo = ar.codigo_fk)as ref_cotizados,
           CAST ( MULTISET( --Selecciona la lista de componentes para el articulo
-                      select MAKE_REF(componentes_view, co.componente_fk)
+                      select MAKE_REF(cotiza_view, co.artCotizado_fk)
                       from componentesxarticulo co
                       where co.articulo_fk = ar.codigo)
-                      as t_componente_lista) as componentes
+                      as t_cotiza_lista) as articulosCotizados
                
-  FROM Articulos ar;
-
+  FROM ArticulosCotizados ar;
+-- Select * from Articulos_OBJ ;
 -------------------------------------------------------------------------------- 
-CREATE OR REPLACE VIEW componentes_view OF t_componente WITH OBJECT IDENTIFIER (componente_id)
-AS
-  select co.id_componente, MAKE_REF(articulos_view, co.articulo_fk)
-  from componentes co;
+
