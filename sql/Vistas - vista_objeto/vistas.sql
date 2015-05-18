@@ -109,6 +109,7 @@ CREATE OR REPLACE VIEW componentes_view OF t_componente WITH OBJECT IDENTIFIER (
 AS
   select co.id_componente, MAKE_REF(articulos_view, co.articulo_fk)
   from componentes co;
-
+  
+-------------------------------------------------------------------------------
 
 
