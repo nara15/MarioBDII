@@ -28,8 +28,8 @@ execute Insert_Art_Cotizado_List('QPKUSFSMOG','COT4',2);
 --___________________________________________________________________________________________
 execute Insert_Art_Cotizado_List('QYUDNADHTW','COT9',2);
 
-execute Insert_Art_Cotizado_List('EOXMTJOSYB','COT9',1);
-execute Insert_Art_Cotizado_List('QYUDNADHTW','COT9',1);
+execute Insert_Art_Cotizado_List('EOXMTJOSYB','COT3',1);
+execute Insert_Art_Cotizado_List('QYUDNADHTW','COT3',1);
 
 -- SELECT LIST_REF_T_COMPONENTE FROM ANY ARTICULO
 select lista_art_cotizados from cotizaciones_obj  where codigo = 'COT5';
@@ -43,7 +43,7 @@ from (
   TABLE(select lista_art_cotizados from cotizaciones_obj where codigo = 'COT3') cotizaciones);
 
 --//////////////////////////Update Articulo Cotizado de Cotizadion///////////////////////////////////////////////////////
-execute Update_ArtCot ('COT3','QPKUSFSMOG',3);
+execute Update_ArtCot ('COT3','QYUDNADHTW',1);
 
 --update  articuloscotizados_obj set CANTIDAD = 2 where codigo = 'COT3' and CODIGOARTICULO = 'QPKUSFSMOG';
 --/////////////////////////Delete Cotizacion - Trigger ON DELETE -////////////////////////////////////////////
