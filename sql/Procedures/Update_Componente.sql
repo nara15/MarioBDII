@@ -6,7 +6,7 @@ IS
  
 BEGIN
 
-   update  componente_obj set ref_t_articulo = (SELECT REF(f) FROM articulos_obj f WHERE f.codigo = codArt)
+   update  componentes_obj set ref_t_articulo = (SELECT REF(f) FROM articulos_obj f WHERE f.codigo = codArt)
    
    where componente_id = idComp ;
 

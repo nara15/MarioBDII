@@ -17,7 +17,7 @@ BEGIN
              )
              values 
              (
-             (SELECT REF(f) FROM Componente_OBJ f WHERE f.componente_id = comp_id)
+             (SELECT REF(f) FROM Componentes_OBJ f WHERE f.componente_id = comp_id)
              );
 
 

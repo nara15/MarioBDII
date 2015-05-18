@@ -22,14 +22,14 @@ COMMIT;
 -- Raise ERROR - Not When Found Cotizacion -- insert into articulosCotizados_obj values ('ABJ','HPLPMCHSUX',1,12000);
 
 -- Testing Articulos Cotizados Prueba ( Nombre Articulo , ID Cotizacion , Cantidad Articulos)
-execute Insert_Art_Cotizado_List('HPLPMCHSUX','COT2',1);
-execute Insert_Art_Cotizado_List('QPKUSFSMOG','COT3',2);
-execute Insert_Art_Cotizado_List('QPKUSFSMOG','COT4',2);
+execute Insert_Art_Cotizado_List('RMTDONOLAX','COT2',1);
+execute Insert_Art_Cotizado_List('PTIISYIGNU','COT3',2);
+execute Insert_Art_Cotizado_List('NNUNYNXJLL','COT4',2);
 --___________________________________________________________________________________________
-execute Insert_Art_Cotizado_List('QYUDNADHTW','COT9',2);
+execute Insert_Art_Cotizado_List('NNUNYNXJLL','COT9',2);
 
-execute Insert_Art_Cotizado_List('EOXMTJOSYB','COT3',1);
-execute Insert_Art_Cotizado_List('QYUDNADHTW','COT3',1);
+execute Insert_Art_Cotizado_List('PTIISYIGNU','COT5',1);
+execute Insert_Art_Cotizado_List('RMTDONOLAX','COT5',1);
 
 -- SELECT LIST_REF_T_COMPONENTE FROM ANY ARTICULO
 select lista_art_cotizados from cotizaciones_obj  where codigo = 'COT5';
@@ -43,7 +43,7 @@ from (
   TABLE(select lista_art_cotizados from cotizaciones_obj where codigo = 'COT3') cotizaciones);
 
 --//////////////////////////Update Articulo Cotizado de Cotizadion///////////////////////////////////////////////////////
-execute Update_ArtCot ('COT3','QYUDNADHTW',1);
+execute Update_ArtCot ('COT2','RMTDONOLAX',2);
 
 --update  articuloscotizados_obj set CANTIDAD = 2 where codigo = 'COT3' and CODIGOARTICULO = 'QPKUSFSMOG';
 --/////////////////////////Delete Cotizacion - Trigger ON DELETE -////////////////////////////////////////////
