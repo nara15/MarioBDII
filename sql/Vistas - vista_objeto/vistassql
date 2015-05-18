@@ -81,6 +81,7 @@ CREATE OR REPLACE TYPE T_Articulo AS OBJECT
 /
 
 --VISTAS////////////////////////////////////////////////////////////////////////
+
 CREATE OR REPLACE VIEW familias_view OF t_familia WITH OBJECT IDENTIFIER (codigo)
   AS SELECT f.codigo, f.descripcion, f.porccompra
   FROM Familias f;
@@ -95,7 +96,7 @@ AS
   SELECT ar.codigo, ar.nombre, ar.marca, ar.modelo, ar.cantminima,
           ar.cantmaxima, ar.precio, ar.fechaactuprecio, ar.fecharegistro,
           (select ref(f) from familias_view f where f.codigo = ar.codigofamilia_fk)as ref_familia,
-          CAST ( MULTISET(
+          CAST ( MULTISET( --Selecciona la lista de componentes para el articulo
                       select MAKE_REF(componentes_view, co.componente_fk)
                       from componentesxarticulo co
                       where co.articulo_fk = ar.codigo)
