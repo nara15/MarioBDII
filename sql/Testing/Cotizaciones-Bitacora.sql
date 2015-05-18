@@ -25,9 +25,9 @@ execute Insert_Art_Cotizado_List('QPKUSFSMOG','COT4',2);
 
 --___________________________________________________________________________________________
 execute Insert_Art_Cotizado_List('QYUDNADHTW','COT5',2);
-execute Insert_Art_Cotizado_List('EOXMTJOSYB','COT5',1);
 
-execute Insert_Art_Cotizado_List('HPLPMCHSUX','COT6',1);
+execute Insert_Art_Cotizado_List('EOXMTJOSYB','COT5',1);
+execute Insert_Art_Cotizado_List('QYUDNADHTW','COT6',5);
 
 -- SELECT LIST_REF_T_COMPONENTE FROM ANY ARTICULO
 select lista_art_cotizados from cotizaciones_obj  where codigo = 'COT4';
@@ -38,8 +38,9 @@ select deref(column_value).codigoarticulo as cod,
        deref(column_value).cantidad as cant ,
        deref(column_value).preciocotizado as precioTotal
 from (
-  TABLE(select lista_art_cotizados from cotizaciones_obj where codigo = 'COT5') cotizaciones);
+  TABLE(select lista_art_cotizados from cotizaciones_obj where codigo = 'COT6') cotizaciones);
 
 --/////////////////////////////////////////////////////////////////////////////////
 
+delete from cotizaciones_obj where codigo = 'COT6';
                                             
