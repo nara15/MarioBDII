@@ -1,5 +1,5 @@
 -- Insertando Datos En Cotizaciones
-
+select * from cotizaciones_obj;
 
 --Cotizacion de Prueba
 execute Insert_Cotizacion ('COT1','-CondicPago-','CondicEntrega','20 Dias','Ninguna','-Cliente No Frecuente','Dolar','EMITIDA','UFO','ARD');
@@ -16,39 +16,42 @@ execute Insert_Cotizacion ('COT9','-CondicPago-','CondicEntrega','20 Dias','Ning
 
 COMMIT;
 
+select * from cotizaciones_obj;
 --Insertar Articulo Cotizados sobre Cotizacion -- select * from articulosCotizados_obj;
                                                -- select * from articulos_obj
 
 -- Raise ERROR - Not When Found Cotizacion -- insert into articulosCotizados_obj values ('ABJ','HPLPMCHSUX',1,12000);
 
 -- Testing Articulos Cotizados Prueba ( Nombre Articulo , ID Cotizacion , Cantidad Articulos)
-execute Insert_Art_Cotizado_List('RMTDONOLAX','COT2',1);
+execute Insert_Art_Cotizado_List('PTIISYIGNU','COT1',1);
 execute Insert_Art_Cotizado_List('PTIISYIGNU','COT3',2);
 execute Insert_Art_Cotizado_List('NNUNYNXJLL','COT4',2);
 --___________________________________________________________________________________________
 execute Insert_Art_Cotizado_List('NNUNYNXJLL','COT9',2);
 
-execute Insert_Art_Cotizado_List('PTIISYIGNU','COT5',1);
-execute Insert_Art_Cotizado_List('RMTDONOLAX','COT5',1);
+execute Insert_Art_Cotizado_List('PTIISYIGNU','COT4',1);
+execute Insert_Art_Cotizado_List('RMTDONOLAX','COT4',1);
 
 -- SELECT LIST_REF_T_COMPONENTE FROM ANY ARTICULO
-select lista_art_cotizados from cotizaciones_obj  where codigo = 'COT5';
+select lista_art_cotizados from cotizaciones_obj  where codigo = 'COT4';
 
 -- // Mejor hacer el result set :D
 -- LIST THE NAMES OF ARTICULOS (INCLUIR EN STORE PROCEDURE )
+
 select deref(column_value).codigoarticulo as cod, 
        deref(column_value).cantidad as cant ,
        deref(column_value).preciocotizado as precioTotal
 from (
-  TABLE(select lista_art_cotizados from cotizaciones_obj where codigo = 'COT3') cotizaciones);
+  TABLE(select lista_art_cotizados from cotizaciones_obj where codigo = 'COT4') cotizaciones);
 
 --//////////////////////////Update Articulo Cotizado de Cotizadion///////////////////////////////////////////////////////
-execute Update_ArtCot ('COT2','RMTDONOLAX',2);
+execute Update_ArtCot ('COT4','RMTDONOLAX',5);
 
 --update  articuloscotizados_obj set CANTIDAD = 2 where codigo = 'COT3' and CODIGOARTICULO = 'QPKUSFSMOG';
 --/////////////////////////Delete Cotizacion - Trigger ON DELETE -////////////////////////////////////////////
 
-delete from cotizaciones_obj where codigo = 'COT9';
+delete from cotizaciones_obj where codigo = 'COT4';
+select * from cotizaciones_obj;
 --///Had to DROP the Constrait 'cause dont alow to drop on child found
 --ALTER TABLE articuloscotizados_obj DROP CONSTRAINT ArtCotizados_Cotizacion_FK;
 
@@ -56,9 +59,15 @@ SELECT * from barticuloscotizados_obj;
 
 SELECT * from cotizaciones_obj;
 
-SELECT * from articuloscotizados_obj;
+SELECT * from bcotizaciones_obj;
 
-SELECT * from articuloscotizados_obj WHERE codigo = 'COT9';
+SELECT * from articuloscotizados_obj;
+SELECT distinct(codigo), codigoarticulo from barticuloscotizados_obj;
+delete from 
+SELECT * from articuloscotizados_obj WHERE codigo = 'COT1';
+
+
+SELECT * from barticuloscotizados_obj WHERE codigo = 'COT1';
 
 delete from articuloscotizados_obj where codigo = 'COT9';
 
