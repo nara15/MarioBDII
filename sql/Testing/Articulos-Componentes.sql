@@ -1,11 +1,14 @@
+
 -- Pruebas Sobre Articulos-Componentes
 SELECT * FROM FACTURACOMPRA_OBJ;
 
 SELECT * FROM ARTICULOS_OBJ;
 
-insert into componentes_obj values (1,(SELECT REF(f) FROM Articulos_OBJ f WHERE f.codigo = 'PTIISYIGNU'));
-insert into componentes_obj values (2,(SELECT REF(f) FROM Articulos_OBJ f WHERE f.codigo = 'RMTDONOLAX'));
-insert into componentes_obj values (3,(SELECT REF(f) FROM Articulos_OBJ f WHERE f.codigo = 'NNUNYNXJLL'));
+
+-- First Insert -- Look Down To Call Procedure ;--
+insert into componentes_obj values (  1   ,(SELECT REF(f) FROM Articulos_OBJ f WHERE f.codigo = 'PTIISYIGNU'));
+insert into componentes_obj values (  2   ,(SELECT REF(f) FROM Articulos_OBJ f WHERE f.codigo = 'RMTDONOLAX'));
+insert into componentes_obj values (  3   ,(SELECT REF(f) FROM Articulos_OBJ f WHERE f.codigo = 'NNUNYNXJLL'));
 
 -------------------------------- TESTING ------------------------------------------------------------------
 -- PARAM1 'CODIGO DE ARTICULO'     SELECT * FROM ARTICULOS_OBJ
@@ -21,6 +24,7 @@ execute Insert_Art_Comp_List ('QPKUSFSMOG','N');
 
 -- SELECT LIST_REF_T_COMPONENTE FROM ANY ARTICULO
 select list_ref_t_componente from articulos_obj  where codigo = 'CDKLJOJBZL';
+
 
 -- LIST THE NAMES OF ARTICULOS
 select deref(deref(column_value).ref_t_articulo).nombre

@@ -18,6 +18,6 @@ END;
 
 
 --////////////////////////// Test //////////////////////////
-
+select * from articuloscotizados;
 execute Update_ArtCot ('COT3','QPKUSFSMOG',3);
 

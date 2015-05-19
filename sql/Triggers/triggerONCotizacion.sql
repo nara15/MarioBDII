@@ -37,21 +37,23 @@ CURSOR C_PROD  IS
 
 select deref(column_value).codigoarticulo as cod,  deref(column_value).cantidad as cant , deref(column_value).preciocotizado as precioTotal 
       from ( TABLE ( select lista_art_cotizados from cotizaciones_obj where codigo = :old.codigo) cotizaciones);
+  CURSOR C_PROD2  IS 
+    select codigo, cantidad, preciocotizado from articuloscotizados_obj where codigo = 'COT9';
   
 BEGIN 
 
-  OPEN C_PROD ;
+  OPEN C_PROD2 ;
 
   LOOP
-    FETCH C_PROD INTO V_CODIGO,V_CANTIDAD,V_TOTAL ;
-          EXIT WHEN C_PROD%NOTFOUND ;
+    FETCH C_PROD2 INTO V_CODIGO,V_CANTIDAD,V_TOTAL ;
+          EXIT WHEN C_PROD2%NOTFOUND ;
           --------------------------------Inserta linea en Bitacora Articulos Cotizados--------------------------------------
          Insert_Art_BCotizado_List (V_CODIGO,:old.codigo,V_Cantidad);
           
           ----------------------------------------------------------------------
           
   END LOOP ;
-  CLOSE C_PROD ;/*<--- CERRAMOR EL CURSOR*/    
+  CLOSE C_PROD2 ;/*<--- CERRAMOR EL CURSOR*/    
   EXCEPTION 
     WHEN OTHERS 
       THEN
