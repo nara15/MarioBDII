@@ -5,6 +5,7 @@
   
   --Crear View de Usuarios
   
+  SELECT * FROM CLIENTES_VIEW;
   
   --Crear View Factura Compra
   

@@ -102,6 +102,8 @@ CREATE TABLE Proveedores_OBJ OF T_Proveedores
     CONSTRAINT Proveedores_PK PRIMARY KEY ( codigo ),
     CONSTRAINT Proveedores_Info_FK FOREIGN KEY (infoProveedor) REFERENCES Info_OBJ
   ) 
+
+
       
 
 

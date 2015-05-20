@@ -33,7 +33,7 @@ INSERT INTO Clientes_obj VALUES('Lateralis', 'Lateralis',    'lateralis'   ,(SEL
 Insert into Info_Obj Values ( '6','intel@intel.com','23',SYSDATE);
 Insert into Info_Obj Values ( '7','amd@amd.com','23',SYSDATE);
 
-INSERT INTO Proveedores_Obj VALUES('INTEL',  'Intel', 'ufotv'     , (SELECT REF(f) FROM Info_OBJ f WHERE f.codigo = '6'));
+INSERT INTO Proveedores_Obj VALUES('INTELI',  'Intel', 'ufotv'     , (SELECT REF(f) FROM Info_OBJ f WHERE f.codigo = '6'));
 INSERT INTO Proveedores_Obj VALUES('AMD',    'AmD',   'lateralis' , (SELECT REF(f) FROM Info_OBJ f WHERE f.codigo = '7'));
 
 
