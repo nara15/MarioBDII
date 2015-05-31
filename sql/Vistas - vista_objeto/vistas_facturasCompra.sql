@@ -1,12 +1,4 @@
-  -- Crear view de Clientes
-  CREATE OR REPLACE VIEW clientes_view OF t_clientes WITH OBJECT IDENTIFIER (codigo)
-  AS SELECT f.codigo, f.nombre, f.nombrecliente, (SELECT REF(f) FROM Info_OBJ f WHERE f.codigo = f.infocliente)
-  FROM clientes f;
-  
-  --Crear View de Usuarios
-  
-  SELECT * FROM CLIENTES_VIEW;
-  
+
   --Crear View Factura Compra
   
   CREATE OR REPLACE VIEW facturacompra_view OF t_facturacompra WITH OBJECT IDENTIFIER (codigo)
