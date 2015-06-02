@@ -29,9 +29,13 @@ select list_ref_t_componente from articulos_obj  where codigo = 'SPYLQYBYXG';
 
 
 -- LIST THE NAMES OF ARTICULOS
+create or replace procedure artComp (art_id IN varchar2)
+is
+begin
+
 select deref(deref(column_value).ref_t_articulo).nombre
 from (
   TABLE(select LIST_REF_T_COMPONENTE from articulos_obj
-  where codigo = 'YYCOHSYUZV') componentes );
-  
+  where codigo = art_id) componentes );
+end;
 

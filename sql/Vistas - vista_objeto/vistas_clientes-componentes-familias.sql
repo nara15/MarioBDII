@@ -10,8 +10,10 @@
   
   
 CREATE OR REPLACE VIEW familias_view OF t_familia WITH OBJECT IDENTIFIER (codigo)
-  AS SELECT f.codigo, f.descripcion, f.porccompra
-  FROM Familias f;
+  AS SELECT f.codigo, f.codigoindice, f.codigo
+  FROM Familia f;
+  
+  Select * from familias_view;
 --///////////////////////////////////////////////////////
 CREATE OR REPLACE VIEW articulos_view OF t_articulo WITH OBJECT IDENTIFIER (codigo)
 AS
@@ -24,8 +26,9 @@ AS
                       where co.articulo_fk = ar.codigo)
                       as t_componente_lista) as componentes
                
-  FROM Articulos ar;
+  FROM Articulo ar;
 
+select * from articulo;
 -------------------------------------------------------------------------------- 
 CREATE OR REPLACE VIEW componentes_view OF t_componente WITH OBJECT IDENTIFIER (componente_id)
 AS
